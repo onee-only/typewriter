@@ -1,0 +1,13 @@
+{
+    "[go]": {
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "always"
+        }
+    },
+    "go.lintTool": "golangci-lint",
+    "go.lintOnSave": "package",
+    "go.lintFlags": ["--config=${workspaceFolder}/.golangci.yml"],
+    "prettier.useEditorConfig": true
+}
