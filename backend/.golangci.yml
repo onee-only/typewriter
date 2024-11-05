@@ -1,0 +1,29 @@
+run:
+  issues-exit-code: 1
+
+issues:
+  new: true
+
+output:
+  sort-results: true
+  sort-order:
+    - severity
+    - file
+    - linter
+
+  show-stats: true
+
+linters:
+  enable-all: true
+
+  disable:
+    - execinquery
+    - gomnd
+    - depguard
+    - testpackage
+    - nonamedreturns
+    - paralleltest
+    - gochecknoglobals
+    - varnamelen
+    - typecheck
+    - exportloopref
