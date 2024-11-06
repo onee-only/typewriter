@@ -8,7 +8,7 @@ type Point struct {
 type Direction uint8
 
 const (
-	DirectionUp = iota
+	DirectionUp Direction = iota
 	DirectionRight
 	DirectionDown
 	DirectionLeft
