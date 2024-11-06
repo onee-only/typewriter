@@ -5,15 +5,6 @@ type Point struct {
 	Y, X int
 }
 
-type Direction uint8
-
-const (
-	DirectionUp Direction = iota
-	DirectionRight
-	DirectionDown
-	DirectionLeft
-)
-
 var dirs = [4]Point{
 	{Y: -1, X: 0}, // [DirectionUp]
 	{Y: 0, X: 1},  // [DirectionRight]
