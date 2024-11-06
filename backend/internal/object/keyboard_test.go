@@ -19,6 +19,12 @@ func (s *KeyboardTestSuite) SetupTest() {
 	s.kb = NewKeyboard()
 }
 
+func (s *KeyboardTestSuite) TestInitialLayout() {
+	layout, capLayout := s.kb.Layout()
+	s.Equal(initialGrid, layout)
+	s.Equal(initialCapGrid, capLayout)
+}
+
 func (s *KeyboardTestSuite) TestCursorInitialPosition() {
 	point := s.kb.Cursor()
 	s.Require().Equal(KeyboardHeight/2, point.Y)

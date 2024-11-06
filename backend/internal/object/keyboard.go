@@ -38,7 +38,7 @@ This is the initial state of the keyboard.
 
 const _nullByte byte = 0
 
-var initialGrid = [KeyboardHeight][KeyboardWidth]byte{
+var initialGrid KeyLayout = [KeyboardHeight][KeyboardWidth]byte{
 	{'`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='},
 	{'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\'},
 	{'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', _nullByte, _nullByte},
@@ -46,7 +46,7 @@ var initialGrid = [KeyboardHeight][KeyboardWidth]byte{
 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 }
 
-var initialCapGrid = [KeyboardHeight][KeyboardWidth]byte{
+var initialCapGrid KeyLayout = [KeyboardHeight][KeyboardWidth]byte{
 	{'~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+'},
 	{'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', '|'},
 	{'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '"', _nullByte, _nullByte},
@@ -54,9 +54,11 @@ var initialCapGrid = [KeyboardHeight][KeyboardWidth]byte{
 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 }
 
+type KeyLayout [KeyboardHeight][KeyboardWidth]byte
+
 type Keyboard struct {
 	cursor        Point
-	grid, capGrid [KeyboardHeight][KeyboardWidth]byte
+	grid, capGrid KeyLayout
 }
 
 func NewKeyboard() Keyboard {
@@ -70,6 +72,10 @@ func NewKeyboard() Keyboard {
 		grid:    initialGrid,
 		capGrid: initialCapGrid,
 	}
+}
+
+func (kb *Keyboard) Layout() (grid, capGrid KeyLayout) {
+	return kb.grid, kb.capGrid
 }
 
 // Cursor returns the current position of cursor.
