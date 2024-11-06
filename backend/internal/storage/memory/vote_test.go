@@ -35,8 +35,9 @@ func (s *VoteStorageTestSuite) TestStatus() {
 func (s *VoteStorageTestSuite) TestVote() {
 	ctx := context.Background()
 
-	err := s.storage.Vote(ctx, object.DirectionUp)
+	cnt, err := s.storage.Vote(ctx, object.DirectionUp)
 	s.Require().NoError(err)
+	s.Equal(uint(1), cnt)
 
 	votes, err := s.storage.Status(ctx)
 	s.Require().NoError(err)
@@ -46,8 +47,9 @@ func (s *VoteStorageTestSuite) TestVote() {
 func (s *VoteStorageTestSuite) TestReset() {
 	ctx := context.Background()
 
-	err := s.storage.Vote(ctx, object.DirectionUp)
+	cnt, err := s.storage.Vote(ctx, object.DirectionUp)
 	s.Require().NoError(err)
+	s.Equal(uint(1), cnt)
 
 	err = s.storage.Reset(ctx)
 	s.Require().NoError(err)
@@ -65,7 +67,7 @@ func (s *VoteStorageTestSuite) TestConsistency() {
 	numIncrs := uint(1000)
 
 	incr := func() {
-		err := s.storage.Vote(ctx, dir)
+		_, err := s.storage.Vote(ctx, dir)
 		s.Require().NoError(err)
 	}
 

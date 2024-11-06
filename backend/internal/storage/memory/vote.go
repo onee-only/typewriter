@@ -39,11 +39,12 @@ func (s *VoteStorage) Status(_ context.Context) (votes [4]uint, err error) {
 	return stat, nil
 }
 
-func (s *VoteStorage) Vote(_ context.Context, dir object.Direction) error {
+func (s *VoteStorage) Vote(_ context.Context, dir object.Direction) (uint, error) {
 	s.lock.Lock()
 
-	s.status[dir]++
+	incr := s.status[dir] + 1
+	s.status[dir] = incr
 	s.lock.Unlock()
 
-	return nil
+	return incr, nil
 }
