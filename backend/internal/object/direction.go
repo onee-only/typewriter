@@ -14,18 +14,7 @@ const (
 	DirectionLeft
 )
 
-var _ enum.Validator = (Direction)(0)
-
-func (d Direction) Valid() error {
-	if d < DirectionUp || d > DirectionLeft {
-		return errors.Errorf(
-			"direction should be in range of %d ~ %d",
-			DirectionUp, DirectionLeft,
-		)
-	}
-
-	return nil
-}
+var _ enum.Validator = Direction(0)
 
 func (d Direction) String() string {
 	switch d {
@@ -40,4 +29,16 @@ func (d Direction) String() string {
 	}
 
 	return "invalid"
+}
+
+var ErrDirectionInvalid = errors.Errorf("direction should be in range of %d ~ %d",
+	DirectionUp, DirectionLeft,
+)
+
+func (d Direction) Valid() error {
+	if d < DirectionUp || d > DirectionLeft {
+		return ErrDirectionInvalid
+	}
+
+	return nil
 }

@@ -12,6 +12,8 @@ var dirs = [4]Point{
 	{Y: 0, X: -1}, // [DirectionLeft]
 }
 
+// Move moves delta blocks to the direction.
+// It assumes that the dir is valid.
 func (p Point) Move(dir Direction, delta int) Point {
 	d := dirs[dir]
 	p.Y += d.Y * delta
