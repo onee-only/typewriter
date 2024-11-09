@@ -4,8 +4,10 @@ WORKDIR = $(PWD)
 GOCMD = go
 GOTEST = $(GOCMD) test -v
 
+.PHONY: lint
 lint:
 	@golangci-lint run
 
-test:
+.PHONY: test
+test: 
 	@$(GOTEST) -race ./...
